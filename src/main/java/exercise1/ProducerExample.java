@@ -1,3 +1,5 @@
+package exercise1;
+
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -40,9 +42,11 @@ public class ProducerExample {
 
         Producer<String, String> producer = new KafkaProducer<String, String>(props);
 
-        for (int i = 0; i < 10000; i++)
+        for (int i = 0; i < 10000; i++) {
             producer.send(new ProducerRecord<String, String>(TOPIC_NAME,
                     Integer.toString(i), Integer.toString(i)));
+        }
+        producer.flush();
         System.out.println("Message sent successfully");
         producer.close();
     }
